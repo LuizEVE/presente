@@ -28,6 +28,7 @@
       margin-bottom: 20px;
       border: 2px solid #4c5df0;
       position: relative;
+      margin: 10px;
     }
 
     .carousel img {
@@ -54,6 +55,18 @@
       text-align: center;
       font-style: italic;
       color: #c7c7c7;
+    }
+    
+    .texto1{
+      color: #ffffff;
+    }
+
+    .texto2{
+      color: gray;
+    }
+
+    .texto3{
+      color: red;
     }
 
     audio { margin-top: 20px; }
@@ -83,7 +96,13 @@
   </style>
 </head>
 <body>
-
+<div>
+  <!-- Música -->
+  <audio controls autoplay loop>
+    <source src="Ararinha.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+</div>
   <!-- Carrossel de fotos -->
   <div class="carousel">
     <!-- Substitua pelos seus nomes/links de imagens -->
@@ -96,7 +115,6 @@
     <img src="foto7.jpg" alt="foto7">
     <img src="foto8.jpg" alt="foto8">
     <img src="foto9.jpg" alt="foto9">
-    <img src="foto10.jpg" alt="foto10">
     <img src="foto11.jpg" alt="foto11">
     <img src="foto12.jpg" alt="foto12">
     <img src="foto13.jpg" alt="foto13">
@@ -110,15 +128,12 @@
 
   <!-- Mensagem romântica -->
   <div class="message">
-    Coloque aqui sua mensagem romântica ❤<br>
-    (Ex: "A cada dia que passa, meu coração se enche de mais amor por você...")
-  </div>
+     <div class="texto1"> A cada dia que pasan, meu coração se enthe mais de carinha e admiração par você. Cada sanrio seu dana memande cada abraço me fa sentir que este ❤</div>
+     <div class="texto2">Você é a razão dos meus melhores pensamentos, e tudo ao seu lado se torna mais bonito a signification</div>
+     <div class="texto3">Eu te amo para sempre💖💖</div>  
+    </div>
 
-  <!-- Música -->
-  <audio controls autoplay loop>
-    <source src="coloque_o_link_da_sua_musica_aqui.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+
 
   <!-- Corações animados -->
   <div class="hearts" id="hearts"></div>
