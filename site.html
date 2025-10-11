@@ -5,30 +5,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eu te amo 💙</title>
   <style>
-    body {
+    * {
       margin: 0;
-      height: 100vh;
-      background-color: #0a0a0f;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      padding: 15px;
     }
 
-    h1 { margin-top: 20px; font-size: 2em; }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 350px;
+      padding: 15px;
+      background: rgba(20, 20, 35, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(220, 20, 60, 0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(220, 20, 60, 0.3);
+    }
 
+    /* Player Spotify Compacto */
+    .spotify-player {
+      width: 100%;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .album-cover {
+      width: 45px;
+      height: 45px;
+      border-radius: 6px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #dc143c, #ff6b6b);
+    }
+
+    .album-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .track-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .track-name {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .artist-name {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .audio-player {
+      width: 100%;
+    }
+
+    audio {
+      width: 100%;
+      height: 25px;
+      border-radius: 12px;
+    }
+
+    /* Carrossel quadrado como no início */
     .carousel {
       width: 250px;
       height: 250px;
-      border-radius: 20px;
+      border-radius: 15px;
       overflow: hidden;
-      margin-bottom: 20px;
-      border: 2px solid #4c5df0;
+      border: 2px solid #dc143c;
       position: relative;
-      margin: 10px;
+      margin: 10px 0;
+      box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
     }
 
     .carousel img {
@@ -38,39 +122,83 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
+      border-radius: 13px;
     }
 
     .carousel img.active { opacity: 1; }
 
-    .counter {
-      font-size: 1.2em;
+    /* Título com degradê */
+    h1 { 
+      margin: 8px 0;
+      font-size: 1.5em;
       text-align: center;
-      margin-top: 10px;
-      line-height: 1.6em;
+      background: linear-gradient(45deg, #dc143c, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(220, 20, 60, 0.3);
     }
 
+    /* Contador compacto com fonte menor */
+    .counter {
+      font-size: 0.8em;
+      text-align: center;
+      margin: 8px 0;
+      line-height: 1.4em;
+      background: rgba(220, 20, 60, 0.15);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #dc143c;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .time-unit {
+      display: inline-block;
+      margin: 0 2px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #dc143c, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .date-info {
+      margin-top: 3px;
+      color: #ffa0a0;
+      font-size: 0.7em;
+      text-align: center;
+    }
+
+    /* Mensagem romântica compacta */
     .message {
-      margin-top: 20px;
-      max-width: 400px;
+      margin-top: 12px;
+      width: 100%;
       text-align: center;
       font-style: italic;
-      color: #c7c7c7;
+      padding: 0 8px;
     }
     
     .texto1{
       color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 0.9em;
+      line-height: 1.3;
     }
 
     .texto2{
-      color: gray;
+      color: #ffd0d0;
+      margin-bottom: 8px;
+      font-size: 0.85em;
+      line-height: 1.3;
     }
 
     .texto3{
-      color: red;
+      color: #ff6b6b;
+      font-weight: bold;
+      font-size: 0.95em;
+      text-shadow: 0 0 6px rgba(255, 107, 107, 0.5);
     }
 
-    audio { margin-top: 20px; }
-
+    /* Corações animados */
     .hearts {
       position: fixed;
       top: 0;
@@ -84,56 +212,143 @@
 
     .heart {
       position: absolute;
-      color: #6c63ff;
+      color: #dc143c;
       animation: float 8s linear infinite;
       opacity: 0.7;
+      font-size: 18px;
+      text-shadow: 0 0 6px rgba(220, 20, 60, 0.7);
     }
 
     @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+      0% { 
+        transform: translateY(100vh) rotate(0deg) scale(0.5); 
+        opacity: 0; 
+      }
+      10% { 
+        opacity: 0.8; 
+      }
+      90% { 
+        opacity: 0.7; 
+      }
+      100% { 
+        transform: translateY(-100px) rotate(360deg) scale(1.2); 
+        opacity: 0; 
+      }
+    }
+
+    /* Responsividade */
+    @media (max-width: 400px) {
+      .container {
+        max-width: 320px;
+        padding: 12px;
+      }
+      
+      .carousel {
+        width: 220px;
+        height: 220px;
+      }
+      
+      h1 {
+        font-size: 1.3em;
+      }
+      
+      .counter {
+        font-size: 0.75em;
+        max-width: 280px;
+      }
+      
+      .spotify-player {
+        padding: 8px;
+      }
+      
+      .album-cover {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .container {
+        max-width: 280px;
+        padding: 10px;
+      }
+      
+      .carousel {
+        width: 200px;
+        height: 200px;
+      }
+      
+      h1 {
+        font-size: 1.2em;
+      }
+      
+      .counter {
+        font-size: 0.7em;
+        max-width: 250px;
+      }
     }
   </style>
 </head>
 <body>
-<div>
-  <!-- Música -->
-  <audio controls autoplay loop>
-    <source src="Ararinha.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-</div>
-  <!-- Carrossel de fotos -->
-  <div class="carousel">
-    <!-- Substitua pelos seus nomes/links de imagens -->
-    <img src="foto1.jpg" class="active" alt="foto1">
-    <img src="foto2.jpg" alt="foto2">
-    <img src="foto3.jpg" alt="foto3">
-    <img src="foto4.jpg" alt="foto4">
-    <img src="foto5.jpg" alt="foto5">
-    <img src="foto6.jpg" alt="foto6">
-    <img src="foto7.jpg" alt="foto7">
-    <img src="foto8.jpg" alt="foto8">
-    <img src="foto9.jpg" alt="foto9">
-    <img src="foto11.jpg" alt="foto11">
-    <img src="foto12.jpg" alt="foto12">
-    <img src="foto13.jpg" alt="foto13">
-    <img src="foto14.jpg" alt="foto14">
-  </div>
-
-  <h1>Eu te amo há:</h1>
-
-  <!-- Contador -->
-  <div class="counter" id="timer"></div>
-
-  <!-- Mensagem romântica -->
-  <div class="message">
-     <div class="texto1"> A cada dia que pasan, meu coração se enthe mais de carinha e admiração par você. Cada sanrio seu dana memande cada abraço me fa sentir que este ❤</div>
-     <div class="texto2">Você é a razão dos meus melhores pensamentos, e tudo ao seu lado se torna mais bonito a signification</div>
-     <div class="texto3">Eu te amo para sempre💖💖</div>  
+  <div class="container">
+    <!-- Player Spotify -->
+    <div class="spotify-player">
+      <div class="album-cover">
+        <img src="capa.jpg" alt="Capa do Álbum">
+      </div>
+      <div class="track-info">
+        <div class="track-name">Ararinha</div>
+        <div class="artist-name">Carlinhos Brown</div>
+        <div class="audio-player">
+          <audio controls autoplay loop>
+            <source src="Ararinha.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+          </audio>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Carrossel de fotos quadrado -->
+    <div class="carousel">
+      <!-- Substitua pelos seus nomes/links de imagens -->
+      <img src="foto1.jpg" class="active" alt="foto1">
+      <img src="foto2.jpg" alt="foto2">
+      <img src="foto3.jpg" alt="foto3">
+      <img src="foto4.jpg" alt="foto4">
+      <img src="foto5.jpg" alt="foto5">
+      <img src="foto6.jpg" alt="foto6">
+      <img src="foto7.jpg" alt="foto7">
+      <img src="foto8.jpg" alt="foto8">
+      <img src="foto9.jpg" alt="foto9">
+      <img src="foto11.jpg" alt="foto11">
+      <img src="foto12.jpg" alt="foto12">
+      <img src="foto13.jpg" alt="foto13">
+      <img src="foto14.jpg" alt="foto14">
     </div>
 
+    <h1>Eu te amo há:</h1>
 
+    <!-- Contador -->
+    <div class="counter">
+      <span class="time-unit" id="years">0</span> anos,
+      <span class="time-unit" id="months">0</span> meses,
+      <span class="time-unit" id="days">0</span> dias,
+      <span class="time-unit" id="hours">00</span> horas,
+      <span class="time-unit" id="minutes">00</span> minutos,
+      <span class="time-unit" id="seconds">00</span> segundos
+    </div>
+
+    <div class="date-info">
+      Desde 11 de Outubro de 2023
+    </div>
+
+    <!-- Mensagem romântica -->
+    <div class="message">
+      <div class="texto1">A cada dia que passa, meu coração se enche mais de carinho e admiração por você.</div>
+      <div class="texto2">Você é a razão dos meus melhores pensamentos, e tudo ao seu lado se torna mais bonito.</div>
+      <div class="texto3">Eu te amo para sempre 💖💖</div>  
+    </div>
+  </div>
 
   <!-- Corações animados -->
   <div class="hearts" id="hearts"></div>
@@ -141,25 +356,95 @@
   <script>
     // @ts-nocheck
     // Contador desde 11 de outubro de 2023
-    const startDate = new Date("2023-10-11T00:00:00");
+    const startDate = new Date("2023-10-11T13:30:00");
 
-    function pad(n) { return n < 10 ? "0" + n : n; }
+    function pad(n) { 
+      return n < 10 ? "0" + n : n; 
+    }
+
+    function calculateTimeDifference(start, end) {
+      // Calcular a diferença total em milissegundos
+      let diff = end - start;
+      
+      // Calcular anos
+      let yearDiff = end.getFullYear() - start.getFullYear();
+      let monthDiff = end.getMonth() - start.getMonth();
+      
+      // Ajustar se o mês atual for anterior ao mês de início
+      if (monthDiff < 0) {
+        yearDiff--;
+        monthDiff += 12;
+      }
+      
+      // Calcular dias
+      let dayDiff = end.getDate() - start.getDate();
+      if (dayDiff < 0) {
+        monthDiff--;
+        // Obter o último dia do mês anterior
+        const lastDayOfMonth = new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+        dayDiff += lastDayOfMonth;
+        
+        // Ajustar meses se necessário
+        if (monthDiff < 0) {
+          yearDiff--;
+          monthDiff += 12;
+        }
+      }
+      
+      // Calcular horas, minutos e segundos
+      let hourDiff = end.getHours() - start.getHours();
+      let minuteDiff = end.getMinutes() - start.getMinutes();
+      let secondDiff = end.getSeconds() - start.getSeconds();
+      
+      // Ajustar valores negativos
+      if (secondDiff < 0) {
+        secondDiff += 60;
+        minuteDiff--;
+      }
+      
+      if (minuteDiff < 0) {
+        minuteDiff += 60;
+        hourDiff--;
+      }
+      
+      if (hourDiff < 0) {
+        hourDiff += 24;
+        dayDiff--;
+        
+        // Reajustar dias se necessário
+        if (dayDiff < 0) {
+          monthDiff--;
+          const lastDayOfMonth = new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+          dayDiff += lastDayOfMonth;
+          
+          if (monthDiff < 0) {
+            yearDiff--;
+            monthDiff += 12;
+          }
+        }
+      }
+      
+      return {
+        years: yearDiff,
+        months: monthDiff,
+        days: dayDiff,
+        hours: hourDiff,
+        minutes: minuteDiff,
+        seconds: secondDiff
+      };
+    }
 
     function updateTimer() {
       const now = new Date();
-      const diff = now - startDate;
-
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-      const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.4375)) % 12;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-      const minutes = Math.floor(diff / (1000 * 60)) % 60;
-      const seconds = Math.floor(diff / 1000) % 60;
-
-      // Usando concatenação para evitar problemas com template literals no editor
-      document.getElementById("timer").innerHTML =
-        years + " anos, " + months + " meses, " + days + " dias, " +
-        pad(hours) + " horas, " + pad(minutes) + " minutos, " + pad(seconds) + " segundos";
+      const timeDiff = calculateTimeDifference(startDate, now);
+      
+      // Atualizar o contador
+      document.getElementById("years").textContent = timeDiff.years;
+      document.getElementById("months").textContent = timeDiff.months;
+      document.getElementById("days").textContent = timeDiff.days;
+      document.getElementById("hours").textContent = pad(timeDiff.hours);
+      document.getElementById("minutes").textContent = pad(timeDiff.minutes);
+      document.getElementById("seconds").textContent = pad(timeDiff.seconds);
     }
 
     setInterval(updateTimer, 1000);
@@ -171,9 +456,16 @@
       heart.classList.add("heart");
       heart.innerHTML = "💙";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      heart.style.fontSize = (12 + Math.random() * 15) + "px";
+      document.getElementById("hearts").appendChild(heart);
+      
+      // Remover o coração após a animação
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 8000);
     }
 
     setInterval(criarCoracao, 400);
