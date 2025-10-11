@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eu te amo 💙</title>
+  <title>Para Você 💙</title>
   <style>
-    body {
+    * {
       margin: 0;
-      height: 100vh;
-      background-color: #0a0a0f;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -18,58 +23,42 @@
       overflow: hidden;
     }
 
-    h1 { margin-top: 20px; font-size: 2em; }
-
-    .carousel {
-      width: 250px;
-      height: 250px;
+    .container {
+      text-align: center;
+      padding: 30px;
+      background: rgba(20, 20, 35, 0.9);
       border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      border: 2px solid #4c5df0;
-      position: relative;
-      margin: 10px;
+      box-shadow: 0 0 30px rgba(220, 20, 60, 0.4);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(220, 20, 60, 0.3);
+      max-width: 300px;
     }
 
-    .carousel img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+    .title {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #dc143c, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .carousel img.active { opacity: 1; }
-
-    .counter {
-      font-size: 1.2em;
-      text-align: center;
-      margin-top: 10px;
-      line-height: 1.6em;
+    .click-button {
+      background: linear-gradient(45deg, #dc143c, #ff6b6b);
+      color: white;
+      border: none;
+      padding: 20px 50px;
+      font-size: 1.5em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
+      font-weight: bold;
     }
 
-    .message {
-      margin-top: 20px;
-      max-width: 400px;
-      text-align: center;
-      font-style: italic;
-      color: #c7c7c7;
+    .click-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(220, 20, 60, 0.7);
     }
-    
-    .texto1{
-      color: #ffffff;
-    }
-
-    .texto2{
-      color: gray;
-    }
-
-    .texto3{
-      color: red;
-    }
-
-    audio { margin-top: 20px; }
 
     .hearts {
       position: fixed;
@@ -78,145 +67,66 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
       z-index: -1;
     }
 
     .heart {
       position: absolute;
-      color: #6c63ff;
+      color: #dc143c;
       animation: float 8s linear infinite;
       opacity: 0.7;
+      font-size: 24px;
     }
 
     @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+      0% { 
+        transform: translateY(100vh) rotate(0deg); 
+        opacity: 0; 
+      }
+      10% { 
+        opacity: 0.8; 
+      }
+      90% { 
+        opacity: 0.7; 
+      }
+      100% { 
+        transform: translateY(-100px) rotate(360deg); 
+        opacity: 0; 
+      }
     }
   </style>
 </head>
 <body>
-<div>
-  <!-- Música -->
-  <audio controls autoplay loop>
-    <source src="Ararinha.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-</div>
-  <!-- Carrossel de fotos -->
-  <div class="carousel">
-    <!-- Substitua pelos seus nomes/links de imagens -->
-    <img src="foto1.jpg" class="active" alt="foto1">
-    <img src="foto2.jpg" alt="foto2">
-    <img src="foto3.jpg" alt="foto3">
-    <img src="foto4.jpg" alt="foto4">
-    <img src="foto5.jpg" alt="foto5">
-    <img src="foto6.jpg" alt="foto6">
-    <img src="foto7.jpg" alt="foto7">
-    <img src="foto8.jpg" alt="foto8">
-    <img src="foto9.jpg" alt="foto9">
-    <img src="foto11.jpg" alt="foto11">
-    <img src="foto12.jpg" alt="foto12">
-    <img src="foto13.jpg" alt="foto13">
-    <img src="foto14.jpg" alt="foto14">
+  <div class="container">
+    <h1 class="title">Para Você 💙</h1>
+    <button class="click-button" onclick="redirectToSite()">Clique</button>
   </div>
 
-  <h1>Eu te amo há:</h1>
-
-  <!-- Contador -->
-  <div class="counter" id="timer"></div>
-
-  <!-- Mensagem romântica -->
-  <div class="message">
-     <div class="texto1"> A cada dia que passa, meu coração se enche mais de carinho e admiração por você. Cada sorriso seu dá na minha mente e cada abraço me faz sentir que este ❤</div>
-     <div class="texto2">Você é a razão dos meus melhores pensamentos, e tudo ao seu lado se torna mais bonito e significativo</div>
-     <div class="texto3">Eu te amo para sempre💖💖</div>  
-    </div>
-
-  <!-- Corações animados -->
   <div class="hearts" id="hearts"></div>
 
   <script>
-    // @ts-nocheck
-    // Contador desde 11 de outubro de 2023
-    const startDate = new Date("2023-10-11T13:30:00");
-
-    function pad(n) { return n < 10 ? "0" + n : n; }
-
-    function updateTimer() {
-      const now = new Date();
-      
-      // Calcular anos
-      let years = now.getFullYear() - startDate.getFullYear();
-      
-      // Calcular meses
-      let months = now.getMonth() - startDate.getMonth();
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-      
-      // Calcular dias
-      let days = now.getDate() - startDate.getDate();
-      if (days < 0) {
-        months--;
-        // Obter o último dia do mês anterior
-        const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-        days += lastDayOfMonth;
-      }
-      
-      // Calcular horas, minutos e segundos
-      let hours = now.getHours() - startDate.getHours();
-      if (hours < 0) {
-        days--;
-        hours += 24;
-      }
-      
-      let minutes = now.getMinutes() - startDate.getMinutes();
-      if (minutes < 0) {
-        hours--;
-        minutes += 60;
-      }
-      
-      let seconds = now.getSeconds() - startDate.getSeconds();
-      if (seconds < 0) {
-        minutes--;
-        seconds += 60;
-      }
-      
-      // Atualizar o contador
-      document.getElementById("timer").innerHTML =
-        years + " anos, " + months + " meses, " + days + " dias, " +
-        pad(hours) + " horas, " + pad(minutes) + " minutos, " + pad(seconds) + " segundos";
+    function redirectToSite() {
+      // Altere para o nome do seu arquivo principal
+      window.location.href = "site.html";
     }
 
-    setInterval(updateTimer, 1000);
-    updateTimer();
-
-    // Corações animados subindo
     function criarCoracao() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "💙";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.getElementById("hearts").appendChild(heart);
+      
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 8000);
     }
 
-    setInterval(criarCoracao, 400);
-
-    // Carrossel automático
-    const images = document.querySelectorAll('.carousel img');
-    let current = 0;
-
-    function changeImage() {
-      images[current].classList.remove('active');
-      current = (current + 1) % images.length;
-      images[current].classList.add('active');
-    }
-
-    setInterval(changeImage, 3000); // troca a cada 3 segundos
+    setInterval(criarCoracao, 300);
   </script>
 </body>
 </html>
