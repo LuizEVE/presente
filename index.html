@@ -53,6 +53,8 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
       font-weight: bold;
+      position: relative;
+      overflow: hidden;
     }
 
     .click-button:hover {
@@ -78,6 +80,15 @@
       font-size: 24px;
     }
 
+    .explosion-heart {
+      position: absolute;
+      color: #1e90ff;
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 1;
+    }
+
     @keyframes float {
       0% { 
         transform: translateY(100vh) rotate(0deg); 
@@ -94,17 +105,29 @@
         opacity: 0; 
       }
     }
+
+    @keyframes explode {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 class="title">Para Você 💙</h1>
-    <button class="click-button" onclick="redirectToSite()">Clique</button>
+    <button class="click-button" id="clickButton">Clique</button>
   </div>
 
   <div class="hearts" id="hearts"></div>
 
   <script>
+    const clickButton = document.getElementById('clickButton');
+    
     function redirectToSite() {
       // Altere para o nome do seu arquivo principal
       window.location.href = "site.html";
@@ -125,6 +148,56 @@
         }
       }, 8000);
     }
+
+    function criarExplosao(x, y) {
+      const numHearts = 1000; // Número de corações na explosão
+      
+      for (let i = 0; i < numHearts; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("explosion-heart");
+        heart.innerHTML = "💙";
+        
+        // Posição inicial (centro do botão)
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        
+        // Direção aleatória para cada coração
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 50 + Math.random() * 150;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        // Duração aleatória da animação
+        const duration = 0.8 + Math.random() * 0.7;
+        
+        // Aplicar animação
+        heart.style.setProperty('--tx', tx + 'px');
+        heart.style.setProperty('--ty', ty + 'px');
+        heart.style.animation = `explode ${duration}s ease-out forwards`;
+        
+        document.body.appendChild(heart);
+        
+        // Remover coração após a animação
+        setTimeout(() => {
+          if (heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+          }
+        }, duration * 1000);
+      }
+    }
+
+    clickButton.addEventListener('click', function(e) {
+      // Obter a posição do botão
+      const rect = clickButton.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      
+      // Criar explosão
+      criarExplosao(x, y);
+      
+      // Redirecionar após a explosão (tempo suficiente para ver a animação)
+      setTimeout(redirectToSite, 1500);
+    });
 
     setInterval(criarCoracao, 300);
   </script>
